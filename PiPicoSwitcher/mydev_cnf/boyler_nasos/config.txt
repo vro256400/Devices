@@ -1,0 +1,15 @@
+wifi_name : name
+wifi_pwd  : passw
+pw_ip : 192.168.1.2
+pw_login : boynas
+pw_passwd : passwd
+
+# switch 0
+sw_name0 : boyler
+sw_pin0 : 19
+sw_pin_default0 : 0
+
+# switch 1
+sw_name1 : nasos
+sw_pin1 : 18
+sw_pin_default1 : 0

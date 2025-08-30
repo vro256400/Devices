@@ -1,0 +1,16 @@
+tz_hours : required : int : range -12 12
+boyler_mode : required : combo string : schedule,manual
+boyler_on: required : bool
+boyler_startH : required : array int : range 0 23
+boyler_startM : required : array int : range 0 59
+boyler_stopH : required : array int : range 0 23
+boyler_stopM : required : array int : range 0 59
+nasos_mode : required : combo string : schedule,manual
+nasos_on : required : bool
+nasos_startH : required : array int : range 0 23
+nasos_startM : required : array int : range 0 59
+nasos_stopH : required : array int : range 0 23
+nasos_stopM : required : array int : range 0 59
+
+validate len(boyler_startH)==len(boyler_startM)==len(boyler_stopH)==len(boyler_stopM)
+validate len(nasos_startH)==len(nasos_startM)==len(nasos_stopH)==len(nasos_stopM)

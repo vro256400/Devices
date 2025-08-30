@@ -1,0 +1,13 @@
+tz_hours : 3
+boyler_mode : schedule
+boyler_on : False
+boyler_startH : [04, 17, 20]
+boyler_startM : [00, 00, 00]
+boyler_stopH : [06, 18, 22]
+boyler_stopM : [00, 00, 00]
+nasos_mode : schedule
+nasos_on : False
+nasos_startH : [07]
+nasos_startM : [00]
+nasos_stopH : [23]
+nasos_stopM : [59]
