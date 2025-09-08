@@ -1,0 +1,5 @@
+tz_hours : 3
+kotelstartH : [21, 1]
+kotelstartM : [0,  2]
+kotelstopH : [23,  3]
+kotelstopM : [59,  4] 

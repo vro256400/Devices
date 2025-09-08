@@ -1,0 +1,10 @@
+wifi_name : name
+wifi_pwd  : passwd
+pw_ip : 192.168.1.2
+pw_login : kot
+pw_passwd : passwd
+
+# switch 0
+sw_name0 : kotel
+sw_pin0 : 18
+sw_pin_default0 : 1
