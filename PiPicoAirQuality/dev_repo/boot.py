@@ -1,10 +1,5 @@
 import time
 import machine
-switcherLED = machine.Pin("LED", machine.Pin.OUT)
-switcherLED.value(1)
-time.sleep(1)
-switcherLED.value(0)
-time.sleep(1)
 import outpinwithindayplan
 import router
 import ntptimestore
@@ -12,6 +7,13 @@ import pycodeupdater
 import pwio
 import devconfig
 from dht11_22 import *
+
+switcherLED = machine.Pin("LED", machine.Pin.OUT)
+switcherLED.value(1)
+time.sleep(1)
+switcherLED.value(0)
+time.sleep(1)
+
 
 dht22s = []
 dht11s = []

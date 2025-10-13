@@ -1,16 +1,17 @@
-tz_hours : required : int : range -12 12
-boyler_mode : required : combo string : schedule,manual
-boyler_on: required : bool
-boyler_startH : required : array int : range 0 23
-boyler_startM : required : array int : range 0 59
-boyler_stopH : required : array int : range 0 23
-boyler_stopM : required : array int : range 0 59
-nasos_mode : required : combo string : schedule,manual
-nasos_on : required : bool
-nasos_startH : required : array int : range 0 23
-nasos_startM : required : array int : range 0 59
-nasos_stopH : required : array int : range 0 23
-nasos_stopM : required : array int : range 0 59
+tz_hours : write_to_device : required : int : range -12 12
+svet_mode : write_to_device : required : combo string : schedule,manual
+svet_on : write_to_device : required : bool
+svet_startH : write_to_device : required : array int : range 0 23
+svet_startM : write_to_device : required : array int : range 0 59
+svet_stopH : write_to_device : required : array int : range 0 23
+svet_stopM : write_to_device : required : array int : range 0 59
+otoplenie_mode : write_to_device : required : combo string : schedule,manual
+otoplenie_on : write_to_device : required : bool
+otoplenie_startH : write_to_device : required : array int : range 0 23
+otoplenie_startM : write_to_device : required : array int : range 0 59
+otoplenie_stopH : write_to_device : required : array int : range 0 23
+otoplenie_stopM : write_to_device : required : array int : range 0 59
+ht : read_from_device : required : float
 
-validate len(boyler_startH)==len(boyler_startM)==len(boyler_stopH)==len(boyler_stopM)
-validate len(nasos_startH)==len(nasos_startM)==len(nasos_stopH)==len(nasos_stopM)
+validate len(svet_startH)==len(svet_startM)==len(svet_stopH)==len(svet_stopM)
+validate len(otoplenie_startH)==len(otoplenie_startM)==len(otoplenie_stopH)==len(otoplenie_stopM)
