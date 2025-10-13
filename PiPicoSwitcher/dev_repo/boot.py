@@ -129,7 +129,8 @@ while True:
     if (not ntp.run()) :
         for sw in switchers :
             sw.switch(sw.PinDefault)
-    
+        continue
+
     pw.run()
         
     if (pw.settingsUpdated) :
