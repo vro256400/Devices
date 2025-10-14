@@ -132,14 +132,13 @@ def count_dev(dev_prefix) :
     while (True):
         key = dev_prefix + "_name" + str(devCount)
         if not key in config.value.keys():
-            break;
+            break
         devCount = devCount + 1
     return devCount
 
 config = devconfig.DevConfig("config.txt")
 
 pw = PwProt()
-pw.ip = config.value["pw_ip"] # port 7777
 pw.login = config.value["pw_login"]
 pw.passwd = config.value["pw_passwd"]
 pw.deviceType = "switcher"
@@ -161,7 +160,6 @@ dht11_count = count_dev("dht11")
 pw.logInfo("dht11 ", dht11_count)
 
 ntp = ntptimestore.NtpTimeStore(pw)
-ntp.serverDomain = config.value["pw_ip"] # port 123
 upd = pycodeupdater.PyCodeUpdater()
 
 updateSettings()

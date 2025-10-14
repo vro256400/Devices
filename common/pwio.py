@@ -1,9 +1,9 @@
 import socket
 import time
+from srv_discovery import getPwServer
 
 class Pwio():
     deviceType = None
-    ip = None
     port = 7777
     login = None
     passwd = None
@@ -118,6 +118,11 @@ class Pwio():
      
     def connect(self):
         if self.socketClient == None:
+            self.logInfo("Server discovery")
+            ip = getPwServer()
+            if ip == None :
+                self.logInfo("Can't detect server")
+                return
             self.logInfo("Connect PW")
             self.socketClient = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             try:

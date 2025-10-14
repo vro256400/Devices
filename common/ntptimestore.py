@@ -2,6 +2,7 @@ import ntptime
 import time
 import pwio
 import utime
+from srv_discovery import getPwServer
 
 # the times in UTC, London - no summer or winter in UTC
 class NtpTimeStore():
@@ -9,7 +10,6 @@ class NtpTimeStore():
     curH = 0
     curM = 0
     tz = 0
-    serverDomain = None
     # port is 123
     
     ntpTimeLoadedAt0 = False
@@ -18,15 +18,20 @@ class NtpTimeStore():
         self.__pw = pw
         
     def setNtpTime(self) -> bool:
-        if (self.serverDomain != None):
-            ntptime.host = self.serverDomain
+        self.__pw.logInfo("Server discovery")
+        getPwServer()
+        serverDomain = getPwServer()
+        if (serverDomain == None):
+            self.__pw.logInfo("Can't detect server")    
+        else:
+            ntptime.host = serverDomain
             self.__pw.logInfo("Loading time from ", ntptime.host)
             try:
                 ntptime.settime()
                 return True
             except:
                 self.__pw.logInfo("Can't get time from ", ntptime.host)
-    
+
         ntptime.host = "pool.ntp.org"
         self.__pw.logInfo("Loading time from ", ntptime.host)
         try:
