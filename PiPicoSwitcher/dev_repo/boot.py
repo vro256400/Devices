@@ -91,7 +91,10 @@ def updateSettings():
 config = devconfig.DevConfig("config.txt")
 
 pw = PwProt()
-# port 7777
+if "pw_ip" in config.value:
+    pw.ip = config.value["pw_ip"] # port 7777
+else:
+    pw.ip = None
 pw.login = config.value["pw_login"]
 pw.passwd = config.value["pw_passwd"]
 pw.deviceType = "switcher"
@@ -113,6 +116,10 @@ while (True):
 pw.logInfo("Switchers ", switchers_count)
 
 ntp = ntptimestore.NtpTimeStore(pw)
+if "pw_ip" in config.value:
+    ntp.serverDomain = config.value["pw_ip"] # port 123
+else:
+    ntp.serverDomain = None
 upd = pycodeupdater.PyCodeUpdater()
 
 updateSettings()

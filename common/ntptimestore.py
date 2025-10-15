@@ -10,6 +10,7 @@ class NtpTimeStore():
     curH = 0
     curM = 0
     tz = 0
+    serverDomain = None
     # port is 123
     
     ntpTimeLoadedAt0 = False
@@ -18,9 +19,14 @@ class NtpTimeStore():
         self.__pw = pw
         
     def setNtpTime(self) -> bool:
-        self.__pw.logInfo("Server discovery")
-        getPwServer()
-        serverDomain = getPwServer()
+        serverDomain = None
+        if (self.serverDomain == None) :
+            self.__pw.logInfo("Server discovery")
+            getPwServer()
+            serverDomain = getPwServer()
+        else:
+            serverDomain = self.serverDomain
+            
         if (serverDomain == None):
             self.__pw.logInfo("Can't detect server")    
         else:

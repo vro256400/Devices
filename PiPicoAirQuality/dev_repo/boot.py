@@ -139,6 +139,7 @@ def count_dev(dev_prefix) :
 config = devconfig.DevConfig("config.txt")
 
 pw = PwProt()
+pw.ip = config.value["pw_ip"] # port 7777
 pw.login = config.value["pw_login"]
 pw.passwd = config.value["pw_passwd"]
 pw.deviceType = "switcher"
@@ -160,6 +161,7 @@ dht11_count = count_dev("dht11")
 pw.logInfo("dht11 ", dht11_count)
 
 ntp = ntptimestore.NtpTimeStore(pw)
+ntp.serverDomain = config.value["pw_ip"] # port 123
 upd = pycodeupdater.PyCodeUpdater()
 
 updateSettings()

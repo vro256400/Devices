@@ -4,6 +4,7 @@ from srv_discovery import getPwServer
 
 class Pwio():
     deviceType = None
+    ip = None
     port = 7777
     login = None
     passwd = None
@@ -24,7 +25,7 @@ class Pwio():
                 self.socketClient.settimeout(None)
                 self.lastComm  = time.time(); 
             except:
-                print("Send error - close socket")
+                print("Pwio: Send error - close socket")
                 self.socketClient.close()
                 self.socketClient = None
                 self.justConnected = False    
@@ -41,7 +42,7 @@ class Pwio():
         except OSError as e:
             if (errno.ETIMEDOUT == e.errno) :
                 return None
-            print("Receive error - close socket ", e)
+            print("Pwio: Receive error - close socket ", e)
             self.socketClient.close()
             self.socketClient = None
             self.justConnected = False   
@@ -118,8 +119,13 @@ class Pwio():
      
     def connect(self):
         if self.socketClient == None:
-            self.logInfo("Server discovery")
-            ip = getPwServer()
+            ip = None
+            if (self.ip == None):
+                self.logInfo("Server discovery")
+                ip = getPwServer()
+            else:
+                ip = self.ip
+                
             if ip == None :
                 self.logInfo("Can't detect server")
                 return
