@@ -55,8 +55,6 @@ class OutPinWithInDayPlan():
     def setupHardware(self):
         self.switcher = machine.Pin(self.PinNumber, machine.Pin.OUT) # GP18
         self.switcher.value(self.PinDefault)
-        #self.switcherLED = machine.Pin("LED", machine.Pin.OUT) # pin 25
-        #self.switcherLED.value(1)
         if (len(self.startH) != len(self.startM)) or (len(self.startH) != len(self.stopH)) or (len(self.stopH) != len(self.stopM)):
             self.__pw.logError("Incorrect settings in OutPinWithInDayPlan")
     
@@ -64,7 +62,6 @@ class OutPinWithInDayPlan():
         changed = (self.logfirstTime or (self.switcher.value() != val));
         self.logfirstTime = False
         self.switcher.value(val)
-        #self.switcherLED.value(val)
         if (changed):
             self.onSwitcherChange(val)
     
@@ -78,14 +75,12 @@ class OutPinWithInDayPlan():
         return self.switchOn
     
     def isTimeToRunSchedule(self, curH, curM) -> bool:
-        #global startH, startM, stopH, stopM
         cur = curH * 256 + curM
         
         for i in range(len(self.startH)):
             start = self.startH[i] * 256 + self.startM[i]
             stop = self.stopH[i] * 256 + self.stopM[i]
             
-          #  self.__pw.logInfo(start, " ", stop, " ", cur)
             if cur >= start and cur <= stop :
                 return True
         
