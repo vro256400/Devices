@@ -93,7 +93,7 @@ def updateSettings():
             sw.setManualOn(v)
 
         print(sw.PinName, "mode :", sw.getModeString())
-        print(sw.PinName, "switcher(manual mode) :", sw.switchOn)
+        print(sw.PinName, "on(for manual mode) :", sw.switchOn)
         print(sw.PinName, "startH :", sw.startH)
         print(sw.PinName, "startM :", sw.startM)
         print(sw.PinName, "stopH :", sw.stopH)
@@ -196,9 +196,9 @@ while True:
     for sw in switchers :
         sw.run(ntp.curH, ntp.curM)   
 
-    print("upd start")
+   
     upd.run()
-    print("upd stop")
+
     
     time.sleep(1)
 

@@ -46,6 +46,7 @@ class PwProt(pwio.Pwio):
 
 def updateSettings():
     global settings, switchers, switchers_count, config, switcherLED, ntp
+    print("updateSettings")
     settings = devconfig.DevConfig("settings.txt")
     switchers = [Kotel() for i in range(switchers_count)]
     for index in range(len(switchers)):
@@ -54,7 +55,6 @@ def updateSettings():
         sw.PinNumber = int(config.value["sw_pin" + str(index)])
         sw.PinDefault = int(config.value["sw_pin_default" + str(index)])
         v = settings.value.get(sw.PinName + "_startH")
-        print(v)
         if (v != None) :
             sw.setStartH(v)
         v = settings.value.get(sw.PinName + "_startM")
@@ -74,7 +74,7 @@ def updateSettings():
             sw.setManualOn(v)
 
         print(sw.PinName, "mode :", sw.getModeString())
-        print(sw.PinName, "switchon(manual mode) :", sw.switchOn)
+        print(sw.PinName, "on(for manual mode) :", sw.switchOn)
         print(sw.PinName, "startH :", sw.startH)
         print(sw.PinName, "startM :", sw.startM)
         print(sw.PinName, "stopH :", sw.stopH)
@@ -87,6 +87,10 @@ def updateSettings():
     switcherLED.value(1)
 
     ntp.tz = int(settings.value["tz_hours"])
+
+
+def aliveToConsole():
+    print(".", end="")
 
 config = devconfig.DevConfig("config.txt")
 
@@ -146,9 +150,9 @@ while True:
     for sw in switchers :
         sw.run(ntp.curH, ntp.curM)
     
-    print("upd start")
+    aliveToConsole()
     upd.run()
-    print("upd stop")
+    aliveToConsole()
     
     time.sleep(1)
 

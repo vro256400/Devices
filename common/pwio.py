@@ -119,14 +119,10 @@ class Pwio():
      
     def connect(self):
         if self.socketClient == None:
-            ip = None
             if (self.ip == None):
-                self.logInfo("Server discovery")
-                ip = getPwServer()
-            else:
-                ip = self.ip
-                
-            if ip == None :
+                self.ip = getPwServer()
+                            
+            if self.ip == None :
                 self.logInfo("Can't detect server")
                 return
             self.logInfo("Connect PW")
@@ -142,10 +138,10 @@ class Pwio():
                     answer += "\t"
                 self.__send(answer)
                 self.__sendMsg(self.login) #instead of handshake for now
-            except:
+            except Exception as e:
                 self.socketClient.close()
                 self.socketClient = None
-                self.logInfo("Connect PW fail")
+                self.logInfo("Connect PW fail ", e)
             
     def isJustConnected(self):
         jc = self.justConnected

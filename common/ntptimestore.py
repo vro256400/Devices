@@ -19,18 +19,13 @@ class NtpTimeStore():
         self.__pw = pw
         
     def setNtpTime(self) -> bool:
-        serverDomain = None
         if (self.serverDomain == None) :
-            self.__pw.logInfo("Server discovery")
-            getPwServer()
-            serverDomain = getPwServer()
-        else:
-            serverDomain = self.serverDomain
+            self.serverDomain = getPwServer()
             
-        if (serverDomain == None):
+        if (self.serverDomain == None):
             self.__pw.logInfo("Can't detect server")    
         else:
-            ntptime.host = serverDomain
+            ntptime.host = self.serverDomain
             self.__pw.logInfo("Loading time from ", ntptime.host)
             try:
                 ntptime.settime()
