@@ -9,7 +9,8 @@ class Pwio():
     login = None
     passwd = None
     socketClient = None
-    lastComm = None
+    lastSend = None
+    lastReceive = None
     justConnected = False
     _PROTOCOLNAMELOG = "Log"
     _PROTOCOLNAMESETTINGS = "Settings"
@@ -23,7 +24,7 @@ class Pwio():
                 self.socketClient.settimeout(1)
                 self.socketClient.sendall(msg)
                 self.socketClient.settimeout(None)
-                self.lastComm  = time.time(); 
+                self.lastSend  = time.time(); 
             except:
                 print("Pwio: Send error - close socket")
                 self.socketClient.close()
@@ -37,7 +38,7 @@ class Pwio():
             tmp = self.socketClient.recv(bytesCount)
             # socketClient.settimeout(oldTimeout)
             if (tmp != None) :
-                self.lastComm  = time.time(); 
+                self.lastReceive  = time.time(); 
             return tmp
         except OSError as e:
             if (errno.ETIMEDOUT == e.errno) :
@@ -151,7 +152,8 @@ class Pwio():
     def run(self) -> bool:
         self.connect()
         if (self.isJustConnected()):
-            self.lastComm  = time.time()
+            self.lastSend = time.time()
+	    self.lastReceive = self.lastSend
             self.logInfo("pwio: just connected - send variables info")
         
         if self.socketClient == None:
@@ -159,8 +161,12 @@ class Pwio():
         
         self.__receiveProtocolsData()
         curTime = time.time()
-        if (curTime - self.lastComm  > 3) : # > 3 sec
+        if (curTime - self.lastSend  > 3) : # > 3 sec
             self.__sendMsg("ping")
+        if (curTime - self.lastReceive > 10):
+            self.socketClient.close()
+            self.socketClient = None
+            self.logInfo("Comm error")
 
         return True
     
