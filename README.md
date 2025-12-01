@@ -77,7 +77,9 @@ You can use a solid-state or mechanical relay. The choice depends on the device�
     sw_pin_default1 : 0
 
 This file is not changeable from web browser and uploads if you changes your hardware or WiFi.
+
 pw_passwd - is any (it doesn’t use in this version)
+
 pw_ip – PW server require when you want to manage device from browser. It is home server and device has functionality to discovery server in local network, but it is better to specify to avoid possibility hackers attack. If you plans but haven’t then reserve IP and specify this parameter.
 
 Other parameters are clear. It declare several pins.
@@ -127,7 +129,7 @@ This file is not for device flash – it is to configure PW.  In my case this fi
 
 #### Upload settings.txt and config.txt to device
 
-   source ~/venv_ampy/bin/activate
+    source ~/venv_ampy/bin/activate
 
 Execute for both file:
 
