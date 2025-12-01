@@ -125,4 +125,17 @@ This file is not for device flash – it is to configure PW.  In my case this fi
     validate len(nasos_startH)==len(nasos_startM)==len(nasos_stopH)==len(nasos_stopM)
     
 
+#### Upload settings.txt and config.txt to device
 
+   source ~/venv_ampy/bin/activate
+
+Execute for both file:
+
+    ampy –-port /dev/ttyACM0 put <file name>
+
+#### Upload boot.py to device
+In repository folder execute:
+
+    ampy –-port /dev/ttyACM0 put ./PiPicoSwitcher/boot.py
+
+#### Device is ready – disconnect from PC
