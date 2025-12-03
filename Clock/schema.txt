@@ -1,0 +1,3 @@
+tz_hours : write_to_device : required : int : range -12 12
+
+
