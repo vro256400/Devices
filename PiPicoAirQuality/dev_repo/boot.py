@@ -7,6 +7,9 @@ import pycodeupdater
 import pwio
 import devconfig
 from dht11_22 import *
+from machine import WDT
+wdt = WDT(timeout=8300)
+wdt.feed()
 
 switcherLED = machine.Pin("LED", machine.Pin.OUT)
 switcherLED.value(1)
@@ -14,6 +17,7 @@ time.sleep(1)
 switcherLED.value(0)
 time.sleep(1)
 
+wdt.feed()
 
 dht22s = []
 dht11s = []
@@ -136,6 +140,8 @@ def count_dev(dev_prefix) :
         devCount = devCount + 1
     return devCount
 
+wdt.feed()
+
 config = devconfig.DevConfig("config.txt")
 
 pw = PwProt()
@@ -167,9 +173,12 @@ upd = pycodeupdater.PyCodeUpdater()
 updateSettings()
 
 while True:    
+    wdt.feed()
     ntw.run()
     if not ntw.isRouterConnected():
-        time.sleep(10)
+        for i in range(10):
+            wdt.feed()
+            time.sleep(1)
         for sw in switchers :
             sw.switch(sw.PinDefault)
         continue

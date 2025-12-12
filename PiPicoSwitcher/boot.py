@@ -1,10 +1,17 @@
 import time
 import machine
+from machine import WDT
+wdt = WDT(timeout=8300)
+wdt.feed()
+
 switcherLED = machine.Pin("LED", machine.Pin.OUT)
 switcherLED.value(1)
 time.sleep(1)
 switcherLED.value(0)
 time.sleep(1)
+
+wdt.feed()
+
 import outpinwithindayplan
 import router
 import ntptimestore
@@ -92,6 +99,8 @@ def updateSettings():
 def aliveToConsole():
     print(".", end="")
 
+wdt.feed()
+
 config = devconfig.DevConfig("config.txt")
 
 pw = PwProt()
@@ -110,6 +119,8 @@ ntw.networkName = config.value["wifi_name"]
 ntw.networkPass = config.value["wifi_pwd"]
 ntw.setupHardware()
 
+wdt.feed()
+
 switchers_count = 0
 while (True):
     key = "sw_name" + str(switchers_count)
@@ -119,6 +130,8 @@ while (True):
     
 pw.logInfo("Switchers ", switchers_count)
 
+wdt.feed()
+
 ntp = ntptimestore.NtpTimeStore(pw)
 if "pw_ip" in config.value:
     ntp.serverDomain = config.value["pw_ip"] # port 123
@@ -126,12 +139,17 @@ else:
     ntp.serverDomain = None
 upd = pycodeupdater.PyCodeUpdater()
 
+wdt.feed()
+
 updateSettings()
 
 while True:    
+    wdt.feed()
     ntw.run()
     if not ntw.isRouterConnected():
-        time.sleep(10)
+        for i in range(10):
+            wdt.feed()
+            time.sleep(1)
         for sw in switchers :
             sw.switch(sw.PinDefault)
         continue
