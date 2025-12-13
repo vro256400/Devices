@@ -117,7 +117,11 @@ class Pwio():
             self.onNewSettings(content) 
         elif (msg.startswith("ping")) :
             print("ping")
-     
+        elif (msg.startswith("ginp")) :
+            content = self.onGetInputsVar()
+            msg = "Sti:" + content
+            self.__sendMsg(msg)
+
     def connect(self):
         if self.socketClient == None:
             if (self.ip == None):
@@ -153,8 +157,8 @@ class Pwio():
         self.connect()
         if (self.isJustConnected()):
             self.lastSend = time.time()
-	    self.lastReceive = self.lastSend
-            self.logInfo("pwio: just connected - send variables info")
+        self.lastReceive = self.lastSend
+        self.logInfo("pwio: just connected - send variables info")
         
         if self.socketClient == None:
             return True
@@ -173,5 +177,10 @@ class Pwio():
     def onGetSettings(self):
         return None
     
+    def onGetInputsVar(self):
+        return None
+
     def onNewSettings(self, content):
         return
+    
+    
