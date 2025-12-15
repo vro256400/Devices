@@ -7,9 +7,7 @@ import pycodeupdater
 import pwio
 import devconfig
 from dht11_22 import *
-from machine import WDT
-#wdt = WDT(timeout=8300)
-#wdt.feed()
+from WatchDog import wdt
 
 switcherLED = machine.Pin("LED", machine.Pin.OUT)
 switcherLED.value(1)
@@ -17,8 +15,7 @@ time.sleep(1)
 switcherLED.value(0)
 time.sleep(1)
 
-#wdt.feed()
-
+wdt.feed()
 
 class PwProt(pwio.Pwio):
     settingsUpdated = False
@@ -132,7 +129,7 @@ class BoardApp(PwProt) :
 
     def __init__(self, deviceType) :
         global wdt
- #       wdt.feed()
+        wdt.feed()
 
         self.config = devconfig.DevConfig("config.txt")
 
@@ -163,12 +160,11 @@ class BoardApp(PwProt) :
     def run(self) :
         global wdt
         while True:    
-  #          wdt.feed()
+            wdt.feed()
             self.ntw.run()
             if not self.ntw.isRouterConnected():
-                for i in range(10):
-                   # wdt.feed()
-                    time.sleep(1)
+                wdt.sleep(10)
+                
                 for sw in self.switchers :
                     sw.switch(sw.PinDefault)
                 continue

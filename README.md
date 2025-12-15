@@ -35,7 +35,7 @@ Use board manual. For Raspberry Pi Pico W press 'Reset' button and connect to PC
     
 ### for Debian
 
-    upload.sh /dev/ttyACM0
+    ./upload.sh /dev/ttyACM0
 
 ## Devices types
 ### Switcher
