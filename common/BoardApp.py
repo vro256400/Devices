@@ -127,7 +127,7 @@ class BoardApp(PwProt) :
             devCount = devCount + 1
         return devCount
 
-    def __init__(self, deviceType) :
+    def __init__(self) :
         global wdt
         wdt.feed()
 
@@ -137,7 +137,7 @@ class BoardApp(PwProt) :
         self.pw.ip = self.config.value["pw_ip"] # port 7777
         self.pw.login = self.config.value["pw_login"]
         self.pw.passwd = self.config.value["pw_passwd"]
-        self.pw.deviceType = deviceType
+        self.pw.deviceType = self.config.value["pw_type"]
 
         self.pw.logInfo("Starting...")
 

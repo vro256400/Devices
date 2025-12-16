@@ -65,6 +65,7 @@ You can use a solid-state or mechanical relay. The choice depends on the deviceâ
     pw_ip : 192.168.1.2
     pw_login : boynas
     pw_passwd : passwd
+    pw_type : switcher
 
     # switch 0
     sw_name0 : boyler
