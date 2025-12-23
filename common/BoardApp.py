@@ -19,7 +19,11 @@ wdt.feed()
 
 class PwProt(pwio.Pwio):
     settingsUpdated = False
-    
+    pw = None
+
+    def __init__(self, pw) :
+        self.pw = pw
+
     def onGetSettings(self):
         print("PwProt.onGetSettings")
         settings = devconfig.DevConfig("settings.txt", False)
@@ -34,7 +38,10 @@ class PwProt(pwio.Pwio):
             f.close()
         self.settingsUpdated = True
 
-class BoardApp(PwProt) :
+    def onGetInputsVar(self):
+        return self.pw.onGetInputsVar()
+    
+class BoardApp :
     config = None 
     pw = None  
     ntw = None
@@ -50,7 +57,7 @@ class BoardApp(PwProt) :
             vals = dht.getTemperatureAndHumidity()
             if vals == None or len(vals) != 2:
                 continue
-            cnf = cnf + "[" + str(vals[0]) + ", " + str(vals[1]) + "]\n"
+            cnf = cnf + dht.PinName + " : [" + str(vals[0]) + ", " + str(vals[1]) + "]\n"
     
         return cnf
 
@@ -115,7 +122,8 @@ class BoardApp(PwProt) :
             print(sw.PinName, "stopM :", sw.stopM)    
 
         self.ntp.tz = int(settings.value["tz_hours"])
-
+        print("Time zone: ", self.ntp.tz)
+        
         switcherLED.value(1)
 
     def count_dev(self, dev_prefix) : 
@@ -133,7 +141,7 @@ class BoardApp(PwProt) :
 
         self.config = devconfig.DevConfig("config.txt")
 
-        self.pw = PwProt()
+        self.pw = PwProt(self)
         self.pw.ip = self.config.value["pw_ip"] # port 7777
         self.pw.login = self.config.value["pw_login"]
         self.pw.passwd = self.config.value["pw_passwd"]
@@ -162,16 +170,16 @@ class BoardApp(PwProt) :
         while True:    
             wdt.feed()
             self.ntw.run()
-            if not self.ntw.isRouterConnected():
-                wdt.sleep(10)
-                
+            if not self.ntw.isRouterConnected():              
                 for sw in self.switchers :
                     sw.switch(sw.PinDefault)
+                wdt.sleep(10)
                 continue
-            
+
             if (not self.ntp.run()) :
                 for sw in self.switchers :
                     sw.switch(sw.PinDefault)
+                wdt.sleep(10)
                 continue
             
             self.pw.run()

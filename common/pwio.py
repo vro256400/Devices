@@ -11,9 +11,6 @@ class Pwio():
     socketClient = None
     lastSend = None
     lastReceive = None
-    justConnected = False
-    _PROTOCOLNAMELOG = "Log"
-    _PROTOCOLNAMESETTINGS = "Settings"
     
     _recvMsgLen = -1
     _recvBuf = [] 
@@ -29,9 +26,11 @@ class Pwio():
                 print("Pwio: Send error - close socket")
                 self.socketClient.close()
                 self.socketClient = None
-                self.justConnected = False    
+
                 
     def __receiveDataFromServer1sec(self, bytesCount):
+        if self.socketClient == None :
+            return None
         try:
             # oldTimeout = socketClient.gettimeout()
             self.socketClient.settimeout(1) # 1 seconds
@@ -46,7 +45,6 @@ class Pwio():
             print("Pwio: Receive error - close socket ", e)
             self.socketClient.close()
             self.socketClient = None
-            self.justConnected = False   
             return None
             
     def __sendMsg(self, msg):
@@ -119,6 +117,7 @@ class Pwio():
             print("ping")
         elif (msg.startswith("ginp")) :
             content = self.onGetInputsVar()
+            print("Content:  ", content)
             msg = "Sti:" + content
             self.__sendMsg(msg)
 
@@ -129,14 +128,20 @@ class Pwio():
                             
             if self.ip == None :
                 self.logInfo("Can't detect server")
-                return
+                return False
             self.logInfo("Connect PW")
             self.socketClient = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             try:
                 self.socketClient.settimeout(1)
                 self.socketClient.connect((self.ip, self.port))
                 self.socketClient.settimeout(None)
-                self.justConnected = True
+            except Exception as e:
+                self.socketClient.close()
+                self.socketClient = None
+                self.logInfo("Connect PW fail ", e)
+                return False
+            
+            try:
                 answer = "PW\t" + self.deviceType
                 l = len(answer)
                 for i in range(l, 48):
@@ -146,23 +151,20 @@ class Pwio():
             except Exception as e:
                 self.socketClient.close()
                 self.socketClient = None
-                self.logInfo("Connect PW fail ", e)
+                self.logInfo("Connect PW fail(send initial data) ", e)
+                return False
             
-    def isJustConnected(self):
-        jc = self.justConnected
-        self.justConnected = False
-        return jc
+            # just connected
+            self.lastSend = time.time()
+            self.lastReceive = self.lastSend
+            self.logInfo("pwio: just connected")
+
+        return True    
         
     def run(self) -> bool:
-        self.connect()
-        if (self.isJustConnected()):
-            self.lastSend = time.time()
-        self.lastReceive = self.lastSend
-        self.logInfo("pwio: just connected - send variables info")
-        
-        if self.socketClient == None:
-            return True
-        
+        if not self.connect():
+            return
+                       
         self.__receiveProtocolsData()
         curTime = time.time()
         if (curTime - self.lastSend  > 3) : # > 3 sec

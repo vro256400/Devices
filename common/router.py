@@ -1,5 +1,6 @@
 import network
 import time
+from WatchDog import wdt
 
 class Router():
     networkName = 'NoAccess'
@@ -7,30 +8,30 @@ class Router():
     connectToRouter = None
     
     def setupHardware(self):
-        #global connectToRouter
         print("Setup WIFI hardware")
         self.connectToRouter = network.WLAN(network.STA_IF)
         self.isRouterConnected()
         
     def doConnectToRouter(self) -> bool:
-        #global connectToRouter
         self.connectToRouter = network.WLAN(network.STA_IF)
         self.connectToRouter.active(True)
         self.connectToRouter.connect(self.networkName, self.networkPass)
-        for x in range(2):
+        for x in range(10):
             if self.connectToRouter.isconnected():
                 return True
             time.sleep(1)
+            wdt.feed()
+            
         return False    
 
     def isRouterConnected(self) -> bool:
-        #global connectToRouter
         return self.connectToRouter.isconnected()
         
     def run(self):
         if not self.isRouterConnected():
             print("Connect to router")
             if self.doConnectToRouter():
+                print('Connected to router')
                 self.onRouterConnected(True)
                 return
             else:
