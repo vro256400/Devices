@@ -25,7 +25,10 @@ If device/port is not added then board already runs script and you should exit. 
 ### Device is not connected:
 Use board manual. For Raspberry Pi Pico W press 'Reset' button and connect to PC's USB - USB disk will appear. You can copy <cloned repository>/Boards/PiPicoW/flash_nuke.uf2 to it and device will erase internal flash disk.
 
-## Upload python code to board
+## Upload device from Samples folder to the board
+[Samples](Samples/README.md)
+
+## Upload python code to the board
 
     source ~/venv_ampy/bin/activate
     cd <cloned repository>
