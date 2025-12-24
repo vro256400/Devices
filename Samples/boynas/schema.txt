@@ -1,0 +1,13 @@
+tz_hours : write_to_device : required : int : range -12 12
+boyler_mode : write_to_device : required : combo string : schedule,manual
+boyler_on : write_to_device : required : bool
+boyler_startH : write_to_device : required : array int : range 0 23
+boyler_startM : write_to_device : required : array int : range 0 59
+boyler_stopH : write_to_device : required : array int : range 0 23
+boyler_stopM : write_to_device : required : array int : range 0 59
+nasos_mode : write_to_device : required : combo string : schedule,manual
+nasos_on : write_to_device : required : bool
+nasos_startH : write_to_device : required : array int : range 0 23
+nasos_startM : write_to_device : required : array int : range 0 59
+nasos_stopH : write_to_device : required : array int : range 0 23
+nasos_stopM : write_to_device : required : array int : range 0 59

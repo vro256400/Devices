@@ -1,0 +1,9 @@
+tz_hours : write_to_device : required : int : range -12 12
+kotel_mode : write_to_device : required : combo string : schedule,manual
+kotel_on: write_to_device : required : bool
+kotel_startH : write_to_device : required : array int : range 0 23
+kotel_startM : write_to_device : required : array int : range 0 59
+kotel_stopH : write_to_device : required : array int : range 0 23
+kotel_stopM : write_to_device : required : array int : range 0 59
+
+validate len(kotel_startH)==len(kotel_startM)==len(kotel_stopH)==len(kotel_stopM)

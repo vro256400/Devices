@@ -51,6 +51,9 @@ class BoardApp :
     config = None
     dht22 = None # dht11 also - it derives from dht22
 
+    def completeInputsVar(self, cnf):
+        return
+    
     def onGetInputsVar(self):
         cnf = ""
         for dht in self.dht22 :
@@ -59,6 +62,8 @@ class BoardApp :
                 continue
             cnf = cnf + dht.PinName + " : [" + str(vals[0]) + ", " + str(vals[1]) + "]\n"
     
+        self.completeInputsVar(cnf)
+        
         return cnf
 
     def createHdwDevices(self) :

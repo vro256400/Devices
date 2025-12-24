@@ -1,0 +1,8 @@
+tz_hours : write_to_device : required : int : range -12 12
+ntp_domain : read_from_device : required : string
+timezone : read_from_device : required : int : range -12 14
+timeH : read_from_device : required : int : range 0 23
+timeM : read_from_device : required : int : range 0 59
+
+
+

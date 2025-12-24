@@ -1,0 +1,11 @@
+wifi_name : <wifi>
+wifi_pwd  : <wifi password>
+pw_ip : <pw_ip>
+pw_login : kotel
+pw_passwd : passwd
+pw_type : switcher
+
+# switch 0
+sw_name0 : kotel
+sw_pin0 : 18
+sw_pin_default0 : 1

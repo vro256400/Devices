@@ -1,0 +1,7 @@
+tz_hours : 2
+kotel_mode : schedule
+kotel_on : False
+kotel_startH : [0]
+kotel_startM : [0]
+kotel_stopH : [6]
+kotel_stopM : [0]

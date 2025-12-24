@@ -1,3 +1,5 @@
+It is framework to create home automation devices.
+
 ## Hardware
 The code should work on any device that supports MicroPython, has a WiFi module and input/output pins. Tested on board Raspberry Pi Pico W.
 
@@ -23,7 +25,7 @@ If device/port is not added then board already runs script and you should exit. 
 ### Device is not connected:
 Use board manual. For Raspberry Pi Pico W press 'Reset' button and connect to PC's USB - USB disk will appear. You can copy <cloned repository>/Boards/PiPicoW/flash_nuke.uf2 to it and device will erase internal flash disk.
 
-## Upload code to board
+## Upload python code to board
 
     source ~/venv_ampy/bin/activate
     cd <cloned repository>
@@ -123,9 +125,6 @@ This file is not for device flash – it is to configure PW.  In my case this fi
     nasos_startM : write_to_device : required : array int : range 0 59
     nasos_stopH : write_to_device : required : array int : range 0 23
     nasos_stopM : write_to_device : required : array int : range 0 59
-
-    validate len(boyler_startH)==len(boyler_startM)==len(boyler_stopH)==len(boyler_stopM)
-    validate len(nasos_startH)==len(nasos_startM)==len(nasos_stopH)==len(nasos_stopM)
     
 
 #### Upload settings.txt and config.txt to device

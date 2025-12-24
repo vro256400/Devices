@@ -1,0 +1,14 @@
+tz_hours : write_to_device : required : int : range -12 12
+svet_mode : write_to_device : required : combo string : schedule,manual
+svet_on : write_to_device : required : bool
+svet_startH : write_to_device : required : array int : range 0 23
+svet_startM : write_to_device : required : array int : range 0 59
+svet_stopH : write_to_device : required : array int : range 0 23
+svet_stopM : write_to_device : required : array int : range 0 59
+otoplenie_mode : write_to_device : required : combo string : schedule,manual
+otoplenie_on : write_to_device : required : bool
+otoplenie_startH : write_to_device : required : array int : range 0 23
+otoplenie_startM : write_to_device : required : array int : range 0 59
+otoplenie_stopH : write_to_device : required : array int : range 0 23
+otoplenie_stopM : write_to_device : required : array int : range 0 59
+ht : read_from_device : required : array float

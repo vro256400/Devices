@@ -11,6 +11,7 @@ class NtpTimeStore():
     curM = 0
     tz = 0
     serverDomain = None
+    lastLoadedDomain = ""
     # port is 123
     
     ntpTimeLoadedAt0 = False
@@ -29,6 +30,7 @@ class NtpTimeStore():
             self.__pw.logInfo("Loading time from ", ntptime.host)
             try:
                 ntptime.settime()
+                self.lastLoadedDomain = ntptime.host
                 return True
             except:
                 self.__pw.logInfo("Can't get time from ", ntptime.host)
@@ -37,6 +39,7 @@ class NtpTimeStore():
         self.__pw.logInfo("Loading time from ", ntptime.host)
         try:
             ntptime.settime()
+            self.lastLoadedDomain = ntptime.host
         except:
             return False
         return True
