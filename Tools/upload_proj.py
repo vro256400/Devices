@@ -18,6 +18,9 @@ def uploadFile(file_name):
     except subprocess.CalledProcessError as e:
         print(f"Command failed with exit code {e.returncode}")
         print("Error output:", e.stderr)
+    except FileNotFoundError as e:
+        print("Error output:", e.strerror)
+        print("ampy should be installed. Probably you need to call 'source ~/venv_ampy/bin/activate'. More detail is in README file.")
     return False
     
 def uploadProject(proj_folder, cmn_folder, temp_folder, wifi_name, wifi_passwd, pw_ip, exclude_boot):
@@ -36,11 +39,16 @@ def uploadProject(proj_folder, cmn_folder, temp_folder, wifi_name, wifi_passwd, 
         if not uploadFile(f):
             return False
 
-    if not uploadFile(proj_folder + "/settings.txt"):
+    if not proj_folder.endswith('/') and not proj_folder.endswith('\\'):
+        proj_folder = proj_folder + "/"
+    if not uploadFile(proj_folder + "settings.txt"):
         return False
     
-    configFileTemplate = proj_folder + "/config.txt"
-    configFile = temp_folder + "/config.txt"
+    configFileTemplate = proj_folder + "config.txt"
+
+    if not temp_folder.endswith('/') and not temp_folder.endswith('\\'):
+        temp_folder = temp_folder + "/"
+    configFile = temp_folder + "config.txt"
     content = ""
     try:
         with open(configFileTemplate, 'r', encoding='utf-8') as file:
@@ -78,7 +86,7 @@ if param_count != 8 and param_count != 9 or param_count == 9 and sys.argv[8] != 
 
 serial_port = sys.argv[3]
 
-uploadProject(sys.argv[1], sys.argv[2], sys.argv[4], sys.argv[5], sys.argv[6], param_count == 8)
+uploadProject(sys.argv[1], sys.argv[2], sys.argv[4], sys.argv[5], sys.argv[6], sys.argv[7], param_count == 9)
 
 
 

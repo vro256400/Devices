@@ -202,4 +202,5 @@ class BoardApp :
             self.step()
             
             time.sleep(1)
+            print(".", end="")
         return
