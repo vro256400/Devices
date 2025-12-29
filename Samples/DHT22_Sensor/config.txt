@@ -3,8 +3,8 @@ wifi_pwd  : <wifi password>
 pw_ip : <pw_ip>
 pw_login : <device_name>
 pw_passwd : passwd
-pw_type : chickencoop
+pw_type : temphum
 
-# dht22
+# dht22, data pin connected to the GPIO2 of ESP-01
 dht22_name0 : ht
 dht22_pin0 : 2
