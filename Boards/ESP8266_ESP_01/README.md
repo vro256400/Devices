@@ -8,7 +8,7 @@
   <img src="https://raw.githubusercontent.com/vro256400/Devices/main/Boards/ESP8266_ESP_01/usb_adapter.jpg" alt="usb adapter"/>
 </p>
 
-This model of usb adapter doesn't work with ESP-01 without resistor 1K between VCC and CH_PD. So,solder it.
+**This model of usb adapter doesn't work with ESP-01 without resistor 1K between VCC and CH_PD. So,solder it!!!**
 
 ## Usb adapter and board connected
 <p align="center">
