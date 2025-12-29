@@ -1,0 +1,2 @@
+tz_hours : write_to_device : required : int : range -12 12
+ht : read_from_device : required : array float

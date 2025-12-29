@@ -5,16 +5,6 @@ pw_login : <device_name>
 pw_passwd : passwd
 pw_type : chickencoop
 
-# switch 0
-sw_name0 : svet
-sw_pin0 : 19
-sw_pin_default0 : 0
-
-# switch 1
-sw_name1 : otoplenie
-sw_pin1 : 18
-sw_pin_default1 : 0
-
 # dht22
 dht22_name0 : ht
-dht22_pin0 : 22
+dht22_pin0 : 2

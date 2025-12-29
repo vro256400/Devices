@@ -9,13 +9,12 @@ class Router():
     
     def setupHardware(self):
         print("Setup WIFI hardware")
-        self.connectToRouter = network.WLAN(network.STA_IF)
-        self.isRouterConnected()
         
     def doConnectToRouter(self) -> bool:
         self.connectToRouter = network.WLAN(network.STA_IF)
         self.connectToRouter.active(True)
         self.connectToRouter.connect(self.networkName, self.networkPass)
+        print(self.networkName)
         for x in range(10):
             if self.connectToRouter.isconnected():
                 return True
@@ -25,7 +24,7 @@ class Router():
         return False    
 
     def isRouterConnected(self) -> bool:
-        return self.connectToRouter.isconnected()
+        return self.connectToRouter != None and self.connectToRouter.isconnected()
         
     def run(self):
         if not self.isRouterConnected():

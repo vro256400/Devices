@@ -23,13 +23,18 @@ def uploadFile(file_name):
         print("ampy should be installed. Probably you need to call 'source ~/venv_ampy/bin/activate'. More detail is in README file.")
     return False
     
-def uploadProject(proj_folder, cmn_folder, temp_folder, wifi_name, wifi_passwd, pw_ip, exclude_boot):
+def uploadProject(proj_folder, cmn_folder, temp_folder, wifi_name, wifi_passwd, pw_ip, board_name, device_name, exclude_boot):
     global serial_port
     files_to_upload = glob.glob(cmn_folder + "/*.py")
     for f in files_to_upload:
         if not uploadFile(f):
             return False
     
+    files_to_upload = glob.glob(cmn_folder + "/" + board_name + "/*.py")
+    for f in files_to_upload:
+        if not uploadFile(f):
+            return False
+
     files_to_upload = glob.glob(proj_folder + "/*.py")
     boot_file = None
     for f in files_to_upload:
@@ -61,6 +66,7 @@ def uploadProject(proj_folder, cmn_folder, temp_folder, wifi_name, wifi_passwd, 
     content = content.replace("<wifi>", wifi_name)
     content = content.replace("<wifi password>", wifi_passwd)
     content = content.replace("<pw_ip>", pw_ip)
+    content = content.replace("<device_name>", device_name)
 
     os.makedirs(temp_folder, exist_ok=True)
     f = open(configFile, 'w')
@@ -74,19 +80,20 @@ def uploadProject(proj_folder, cmn_folder, temp_folder, wifi_name, wifi_passwd, 
         return False
 
     if boot_file != None:
-        print("command to run board is: ampy --port " + serial_port + " run " + boot_file)     
+        print("command to run board is: ampy --port " + serial_port + " run " + boot_file)
 
     return True
 
 param_count = len(sys.argv)
-if param_count != 8 and param_count != 9 or param_count == 9 and sys.argv[8] != "exclude_boot":
-    print("upload_proj.py <project folder> <common folder> <serial port> <temp folder> <wifi name> <wifi password> <PW IP> [exclude_boot]")
+if param_count != 10 and param_count != 11 or param_count == 11 and sys.argv[10] != "exclude_boot":
+    print("upload_proj.py <project folder> <common folder> <serial port> <temp folder> <wifi name> <wifi password> <PW IP> <board name> <device_name>[exclude_boot]")
     exit(1)
 
 
 serial_port = sys.argv[3]
 
-uploadProject(sys.argv[1], sys.argv[2], sys.argv[4], sys.argv[5], sys.argv[6], sys.argv[7], param_count == 9)
+uploadProject(sys.argv[1], sys.argv[2], sys.argv[4], sys.argv[5], sys.argv[6], sys.argv[7],
+               sys.argv[8], sys.argv[9], param_count == 11)
 
 
 

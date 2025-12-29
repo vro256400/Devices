@@ -9,11 +9,11 @@ import devconfig
 from dht11_22 import *
 from WatchDog import wdt
 
-switcherLED = machine.Pin("LED", machine.Pin.OUT)
-switcherLED.value(1)
-time.sleep(1)
-switcherLED.value(0)
-time.sleep(1)
+# switcherLED = machine.Pin("LED", machine.Pin.OUT)
+# switcherLED.value(1)
+# time.sleep(1)
+# switcherLED.value(0)
+# time.sleep(1)
 
 wdt.feed()
 
@@ -129,7 +129,7 @@ class BoardApp :
         self.ntp.tz = int(settings.value["tz_hours"])
         print("Time zone: ", self.ntp.tz)
         
-        switcherLED.value(1)
+#        switcherLED.value(1)
 
     def count_dev(self, dev_prefix) : 
         devCount = 0

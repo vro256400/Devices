@@ -1,6 +1,6 @@
 wifi_name : <wifi>
 wifi_pwd  : <wifi password>
 pw_ip : <pw_ip>
-pw_login : clock
+pw_login : <device_name>
 pw_passwd : passwd
 pw_type : clock
