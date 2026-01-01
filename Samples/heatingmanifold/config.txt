@@ -1,0 +1,18 @@
+wifi_name : <wifi>
+wifi_pwd  : <wifi password>
+pw_ip : <pw_ip>
+pw_login : <device_name>
+pw_passwd : passwd
+pw_type : heatingmanifold
+
+sw_name0 : room0
+sw_pin0 : 0
+sw_pin_default0 : 1
+
+sw_name1 : room1
+sw_pin1 : 1
+sw_pin_default1 : 1
+
+sw_name2 : room2
+sw_pin2 : 2
+sw_pin_default2 : 1

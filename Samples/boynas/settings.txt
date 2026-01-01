@@ -1,4 +1,4 @@
-tz_hours : 3
+tz_hours : 2
 boyler_mode : schedule
 boyler_on : False
 boyler_startH : [4, 17, 20]

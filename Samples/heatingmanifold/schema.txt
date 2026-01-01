@@ -1,0 +1,19 @@
+tz_hours : write_to_device : required : int : range -12 12
+room0_mode : write_to_device : required : combo string : schedule,manual
+room0_on : write_to_device : required : bool
+room0_startH : write_to_device : required : array int : range 0 23
+room0_startM : write_to_device : required : array int : range 0 59
+room0_stopH : write_to_device : required : array int : range 0 23
+room0_stopM : write_to_device : required : array int : range 0 59
+room1_mode : write_to_device : required : combo string : schedule,manual
+room1_on : write_to_device : required : bool
+room1_startH : write_to_device : required : array int : range 0 23
+room1_startM : write_to_device : required : array int : range 0 59
+room1_stopH : write_to_device : required : array int : range 0 23
+room1_stopM : write_to_device : required : array int : range 0 59
+room2_mode : write_to_device : required : combo string : schedule,manual
+room2_on : write_to_device : required : bool
+room2_startH : write_to_device : required : array int : range 0 23
+room2_startM : write_to_device : required : array int : range 0 59
+room2_stopH : write_to_device : required : array int : range 0 23
+room2_stopM : write_to_device : required : array int : range 0 59

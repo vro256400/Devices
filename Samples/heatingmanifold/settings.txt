@@ -1,0 +1,19 @@
+tz_hours : 3
+room0_mode : schedule
+room0_on : False
+room0_startH : [4, 17, 20]
+room0_startM : [0, 0,  0]
+room0_stopH : [6, 18, 22]
+room0_stopM : [0, 0, 0]
+room1_mode : schedule
+room1_on : False
+room1_startH : [7]
+room1_startM : [0]
+room1_stopH : [23]
+room1_stopM : [59] 
+room2_mode : schedule
+room2_on : False
+room2_startH : [4, 17, 20]
+room2_startM : [0, 0,  0]
+room2_stopH : [6, 18, 22]
+room2_stopM : [0, 0, 0]

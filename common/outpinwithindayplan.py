@@ -30,7 +30,7 @@ class OutPinWithInDayPlan():
         self.startH = eval(s)
         
     def setStartM(self, s):
-        self.startM = eval(s)    
+        self.startM = eval(s)
     
     def setStopH(self, s):
         self.stopH = eval(s)
