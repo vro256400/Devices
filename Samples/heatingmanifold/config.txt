@@ -5,14 +5,32 @@ pw_login : <device_name>
 pw_passwd : passwd
 pw_type : heatingmanifold
 
-sw_name0 : room0
+sw_name0 : kotel
 sw_pin0 : 0
 sw_pin_default0 : 1
 
-sw_name1 : room1
+sw_name1 : room0
 sw_pin1 : 1
 sw_pin_default1 : 1
 
-sw_name2 : room2
+sw_name2 : room1
 sw_pin2 : 2
 sw_pin_default2 : 1
+
+sw_name3 : room2
+sw_pin3 : 3
+sw_pin_default3 : 1
+
+sw_name4 : room3
+sw_pin4 : 4
+sw_pin_default4 : 1
+
+sw_name5 : room4
+sw_pin5 : 5
+sw_pin_default5 : 1
+
+sw_name6 : room5
+sw_pin6 : 6
+sw_pin_default6 : 1
+
+

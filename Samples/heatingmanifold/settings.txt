@@ -1,19 +1,64 @@
 tz_hours : 3
+room0_mode_ex : temp_control
 room0_mode : schedule
 room0_on : False
 room0_startH : [4, 17, 20]
 room0_startM : [0, 0,  0]
 room0_stopH : [6, 18, 22]
 room0_stopM : [0, 0, 0]
+room0_temp : 0
+room0_temp_sh : 22
+room1_mode_ex : temp_control
 room1_mode : schedule
 room1_on : False
 room1_startH : [7]
 room1_startM : [0]
 room1_stopH : [23]
 room1_stopM : [59] 
+room1_temp : 0
+room1_temp_sh : 22
+room2_mode_ex : temp_control
 room2_mode : schedule
 room2_on : False
 room2_startH : [4, 17, 20]
 room2_startM : [0, 0,  0]
 room2_stopH : [6, 18, 22]
 room2_stopM : [0, 0, 0]
+room2_temp : 0
+room2_temp_sh : 22
+room3_mode_ex : temp_control
+room3_mode : schedule
+room3_on : False
+room3_startH : [7]
+room3_startM : [0]
+room3_stopH : [23]
+room3_stopM : [59]
+room3_temp : 0
+room3_temp_sh : 22
+room4_mode_ex : temp_control
+room4_mode : schedule
+room4_on : False
+room4_startH : [7]
+room4_startM : [0]
+room4_stopH : [23]
+room4_stopM : [59]
+room4_temp : 0
+room4_temp_sh : 22
+room5_mode_ex : temp_control
+room5_mode : schedule
+room5_on : False
+room5_startH : [7]
+room5_startM : [0]
+room5_stopH : [23]
+room5_stopM : [59]
+room5_temp : 0
+room5_temp_sh : 22
+room6_mode_ex : temp_control
+room6_mode : schedule
+room6_on : False
+room6_startH : [7]
+room6_startM : [0]
+room6_stopH : [23]
+room6_stopM : [59]
+room6_temp : 0
+room6_temp_sh : 22

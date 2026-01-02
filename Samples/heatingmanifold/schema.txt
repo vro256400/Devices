@@ -5,15 +5,60 @@ room0_startH : write_to_device : required : array int : range 0 23
 room0_startM : write_to_device : required : array int : range 0 59
 room0_stopH : write_to_device : required : array int : range 0 23
 room0_stopM : write_to_device : required : array int : range 0 59
+room0_temp :  write_to_device : required : int : range 0 30
+room0_temp_sh :  write_to_device : required : int : range 0 30
+room0_mode_ex : write_to_device : required : combo string : pin_usual,temp_control,pin_usual_temp_control
 room1_mode : write_to_device : required : combo string : schedule,manual
 room1_on : write_to_device : required : bool
 room1_startH : write_to_device : required : array int : range 0 23
 room1_startM : write_to_device : required : array int : range 0 59
 room1_stopH : write_to_device : required : array int : range 0 23
 room1_stopM : write_to_device : required : array int : range 0 59
+room1_temp :  write_to_device : required : int : range 0 30
+room1_temp_sh :  write_to_device : required : int : range 0 30
+room1_mode_ex : write_to_device : required : combo string : pin_usual,temp_control,pin_usual_temp_control
 room2_mode : write_to_device : required : combo string : schedule,manual
 room2_on : write_to_device : required : bool
 room2_startH : write_to_device : required : array int : range 0 23
 room2_startM : write_to_device : required : array int : range 0 59
 room2_stopH : write_to_device : required : array int : range 0 23
 room2_stopM : write_to_device : required : array int : range 0 59
+room2_temp :  write_to_device : required : int : range 0 30
+room2_temp_sh :  write_to_device : required : int : range 0 30
+room2_mode_ex : write_to_device : required : combo string : pin_usual,temp_control,pin_usual_temp_control
+room3_mode : write_to_device : required : combo string : schedule,manual
+room3_on : write_to_device : required : bool
+room3_startH : write_to_device : required : array int : range 0 23
+room3_startM : write_to_device : required : array int : range 0 59
+room3_stopH : write_to_device : required : array int : range 0 23
+room3_stopM : write_to_device : required : array int : range 0 59
+room3_temp :  write_to_device : required : int : range 0 30
+room3_temp_sh :  write_to_device : required : int : range 0 30
+room3_mode_ex : write_to_device : required : combo string : pin_usual,temp_control,pin_usual_temp_control
+room4_mode : write_to_device : required : combo string : schedule,manual
+room4_on : write_to_device : required : bool
+room4_startH : write_to_device : required : array int : range 0 23
+room4_startM : write_to_device : required : array int : range 0 59
+room4_stopH : write_to_device : required : array int : range 0 23
+room4_stopM : write_to_device : required : array int : range 0 59
+room4_temp :  write_to_device : required : int : range 0 30
+room4_temp_sh :  write_to_device : required : int : range 0 30
+room4_mode_ex : write_to_device : required : combo string : pin_usual,temp_control,pin_usual_temp_control
+room5_mode : write_to_device : required : combo string : schedule,manual
+room5_on : write_to_device : required : bool
+room5_startH : write_to_device : required : array int : range 0 23
+room5_startM : write_to_device : required : array int : range 0 59
+room5_stopH : write_to_device : required : array int : range 0 23
+room5_stopM : write_to_device : required : array int : range 0 59
+room5_temp :  write_to_device : required : int : range 0 30
+room5_temp_sh :  write_to_device : required : int : range 0 30
+room5_mode_ex : write_to_device : required : combo string : pin_usual,temp_control,pin_usual_temp_control
+room6_mode : write_to_device : required : combo string : schedule,manual
+room6_on : write_to_device : required : bool
+room6_startH : write_to_device : required : array int : range 0 23
+room6_startM : write_to_device : required : array int : range 0 59
+room6_stopH : write_to_device : required : array int : range 0 23
+room6_stopM : write_to_device : required : array int : range 0 59
+room6_temp :  write_to_device : required : int : range 0 30
+room6_temp_sh :  write_to_device : required : int : range 0 30
+room6_mode_ex : write_to_device : required : combo string : pin_usual,temp_control,pin_usual_temp_control
