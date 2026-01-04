@@ -1,16 +1,24 @@
 from machine import Pin
 from time import sleep
 import dht 
+import time
 
 class dht22():
     PinName = "DefaultName"
     PinNumber = 22 # default pin
     sensor = None
     ht = None
+    measure_time = 0
+
     def setupHardware(self):               
         self.sensor = dht.DHT22(Pin(self.PinNumber))
 
     def getTemperatureAndHumidity(self) :
+        if self.ht == None:
+            self.run()
+        return self.ht
+    
+    def measureTemperatureAndHumidity(self) :
         ret = None
         try:
             self.sensor.measure()
@@ -25,7 +33,11 @@ class dht22():
         return ret
     
     def run(self) :
-        ht = self.getTemperatureAndHumidity()
+        cur_time = time.time()
+        if self.ht != None and cur_time - self.measure_time < 30: 
+            return
+        self.ht = self.measureTemperatureAndHumidity()
+        self.measure_time = cur_time
 
 class dht11(dht22):
     def setupHardware(self):               

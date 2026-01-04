@@ -33,4 +33,7 @@ sw_name6 : room5
 sw_pin6 : 6
 sw_pin_default6 : 1
 
+sw_name7 : room6
+sw_pin7 : 7
+sw_pin_default7 : 1
 

@@ -1,6 +1,7 @@
 import socket
 import time
 from srv_discovery import getPwServer
+import errno
 
 class Pwio():
     deviceType = None
@@ -42,6 +43,11 @@ class Pwio():
         except OSError as e:
             if (errno.ETIMEDOUT == e.errno) :
                 return None
+            print("Pwio: Receive error - close socket ", e)
+            self.socketClient.close()
+            self.socketClient = None
+            return None
+        except Exception as e:
             print("Pwio: Receive error - close socket ", e)
             self.socketClient.close()
             self.socketClient = None

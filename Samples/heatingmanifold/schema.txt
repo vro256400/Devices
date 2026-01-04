@@ -1,4 +1,10 @@
 tz_hours : write_to_device : required : int : range -12 12
+kotel_mode : write_to_device : required : combo string : schedule,manual
+kotel_on : write_to_device : required : bool
+kotel_startH : write_to_device : required : array int : range 0 23
+kotel_startM : write_to_device : required : array int : range 0 59
+kotel_stopH : write_to_device : required : array int : range 0 23
+kotel_stopM : write_to_device : required : array int : range 0 59
 room0_mode : write_to_device : required : combo string : schedule,manual
 room0_on : write_to_device : required : bool
 room0_startH : write_to_device : required : array int : range 0 23
@@ -62,3 +68,4 @@ room6_stopM : write_to_device : required : array int : range 0 59
 room6_temp :  write_to_device : required : int : range 0 30
 room6_temp_sh :  write_to_device : required : int : range 0 30
 room6_mode_ex : write_to_device : required : combo string : pin_usual,temp_control,pin_usual_temp_control
+

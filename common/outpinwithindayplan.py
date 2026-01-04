@@ -10,7 +10,7 @@ class OutPinWithInDayPlan():
         Schedule = 2
 
     mode = Mode.Schedule
-
+    invertPin = False
     # Manual mode data
     switchOn = False
     
@@ -52,16 +52,27 @@ class OutPinWithInDayPlan():
     def setManualOn(self, s) :
         self.switchOn = eval(s)
 
+    def setInvertPin(self, s) :
+        self.invertPin = eval(s)
+
+    def pinSetValue(self, val):
+        print(self.PinName)
+        if self.invertPin:
+            val = 0 if val == 1 else 1
+            print("inverted")
+        print(val)
+        self.switcher.value(val)
+
     def setupHardware(self):
         self.switcher = machine.Pin(self.PinNumber, machine.Pin.OUT) # GP18
-        self.switcher.value(self.PinDefault)
+        self.pinSetValue(self.PinDefault)
         if (len(self.startH) != len(self.startM)) or (len(self.startH) != len(self.stopH)) or (len(self.stopH) != len(self.stopM)):
             self.__pw.logError("Incorrect settings in OutPinWithInDayPlan")
     
     def switch(self, val):
         changed = (self.logfirstTime or (self.switcher.value() != val));
         self.logfirstTime = False
-        self.switcher.value(val)
+        self.pinSetValue(val)
         if (changed):
             self.onSwitcherChange(val)
     

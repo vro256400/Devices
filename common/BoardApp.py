@@ -75,6 +75,10 @@ class BoardApp :
             sw.PinName = self.config.value["sw_name" + str(index)]
             sw.PinNumber = int(self.config.value["sw_pin" + str(index)])
             sw.PinDefault = int(self.config.value["sw_pin_default" + str(index)])
+            v = self.config.value.get("sw_inverted" + str(index))
+            if (v != None) :
+                sw.setInvertPin(v)
+            
         self.pw.logInfo('Setup switchers hardware...')
         for sw in self.switchers :
             print(sw.PinName)
@@ -196,7 +200,9 @@ class BoardApp :
             for sw in self.switchers :
                 sw.run(self.ntp.curH, self.ntp.curM)   
 
-        
+            for dht in self.dht22 :
+                dht.run()
+
             self.upd.run()
 
             self.step()
