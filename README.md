@@ -1,7 +1,7 @@
 It is framework to create home automation devices.
 
 ## Hardware
-The code should work on any device that supports MicroPython, has a WiFi module and input/output pins. Tested on board Raspberry Pi Pico W.
+The code should work on any device that supports MicroPython, has a WiFi module and input/output pins. Tested on board Raspberry Pi Pico W and ESP-01.
 
 ## Prepare Debian 13 host
 
