@@ -164,7 +164,10 @@ class BoardApp :
         self.ntw.setupHardware()
 
         self.ntp = ntptimestore.NtpTimeStore(self.pw)
-        self.ntp.serverDomain = self.config.value["pw_ip"] # port 123
+        if self.config.value.get("ntp_srv") == None:
+            self.ntp.serverDomain = self.config.value["pw_ip"] # port 123
+        else:
+            self.ntp.serverDomain = self.config.value["ntp_srv"] # port 123
         
         self.upd = pycodeupdater.PyCodeUpdater()
 

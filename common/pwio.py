@@ -135,7 +135,7 @@ class Pwio():
             if self.ip == None :
                 self.logInfo("Can't detect server")
                 return False
-            self.logInfo("Connect PW")
+            self.logInfo("Connect PW " + self.ip + ":" + str(self.port))
             self.socketClient = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             try:
                 self.socketClient.settimeout(1)
