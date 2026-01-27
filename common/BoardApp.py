@@ -51,8 +51,8 @@ class BoardApp :
     config = None
     dht22 = None # dht11 also - it derives from dht22
 
-    def completeInputsVar(self, cnf):
-        return
+    def completeInputsVar(self):
+        return ""
     
     def onGetInputsVar(self):
         cnf = ""
@@ -62,7 +62,7 @@ class BoardApp :
                 continue
             cnf = cnf + dht.PinName + " : [" + str(vals[0]) + ", " + str(vals[1]) + "]\n"
     
-        self.completeInputsVar(cnf)
+        cnf = cnf + self.completeInputsVar()
         
         return cnf
 
